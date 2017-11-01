@@ -1,6 +1,5 @@
 const config = require('../config.json');
 exports.run = (client, message, params) => {
-  try {
   if (!params[0]) {
     const commandNames = Array.from(client.commands.keys());
     const longest = commandNames.reduce((long, str) => Math.max(long, str.length), 0);
@@ -12,9 +11,6 @@ exports.run = (client, message, params) => {
       message.channel.send(`= ${command.help.name} = \n${command.help.description}\nusage::${command.help.usage}`, {code:'asciidoc'});
     }
   }
-} catch (e) {
-  console.log('Error during help detected: '+`${e}`);
-}
 };
 
 exports.conf = {

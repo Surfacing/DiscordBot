@@ -1,6 +1,6 @@
-const config = require('./config.json');
+const config = require('../config.json');
 
-module.exportd = member => {
+module.exports = member => {
   let guild = member.guild;
   const client = guild.client;
   client.channels.get(config.audit).send(`User ${member.user} joined the Server.`);

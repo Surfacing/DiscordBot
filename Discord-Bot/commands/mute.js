@@ -3,14 +3,15 @@ const {caseNumber} = require('../util/caseNumber.js');
 const {parseUser} = require('../util/parseUser.js');
 const config = require('../config.json');
 
-exports.run = (client, message, args) => {
+exports.run = async (client, message, args) => {
   try {
   let reason = args.slice(1).join(' ');
   let user = message.mentions.users.first();
   parseUser(message, user);
-const caseNum = await caseNumber(client, modlog);
-const muteRole = client.guilds.get(message.guild.id).roles.find('name', 'muted');
     let auditLog = client.channels.get(config.audit);
+const caseNum = await caseNumber(client, auditLog);
+const muteRole = client.guilds.get(message.guild.id).roles.find('name', 'muted');
+
   if (!auditLog) return message.reply('I cannot find a audit channel').catch(console.error);
   if (!muteRole) return message.reply('I cannot find a mute role').catch(console.error);
   if (reason.length < 1) return message.reply('You must supply a reason for the mute.').catch(console.error);

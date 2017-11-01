@@ -3,7 +3,8 @@ var config = require('../config.json');
 exports.run = function(client, message) {
   message.channel.send('Ping?')
 .then(message2 => {
-  message2.edit(`Pong! ${message2.createTimeStamp - message.createTimeStamp} ms`);
+  message2.edit(`Pong! ${message2.createdTimestamp - message.createdTimestamp} ms`)
+});
 };
 
 exports.conf = {

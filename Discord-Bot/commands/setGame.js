@@ -2,9 +2,9 @@ var config = require('../config.json');
 
 exports.run = function(client, message, args) {
   try {
-  if(!!argresult && argresult.lenght !== 0) {
-       console.log(`User: ${message.author.username} set game to: ${argresult}`);
-     client.user.setGame(argresult).catch(e => console.log(`Error during setting Game: ${e}`));
+  if(!!args && args.lenght !== 0) {
+       console.log(`User: ${message.author.username} set game to: ${args}`);
+     client.user.setGame(args.join(' ')).catch(e => console.log(`Error during setting Game: ${e}`));
   } else {
     console.log(`User: ${message.author.username} unsets the current game.`);
   client.user.setGame(null);

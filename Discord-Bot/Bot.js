@@ -5,7 +5,8 @@ const config = require('./config.json');
 const ddiff = require('return-deep-diff');
 const chalk = require('chalk');
 const fs = require('fs');
-require('./util/EventLoader')(client);
+const moment = require('moment');
+require('./util/eventLoader')(client);
 
 // Login stuff
 client.login(config.token);
@@ -76,11 +77,10 @@ client.elevation = message => {
   /* This function should resolve to an ELEVATION level which
      is then sent to the command handler for verification*/
   let permlvl = 0;
-  let mod_role = message.guild.roles.find('name', config.mode_role);
+  let mod_role = message.guild.roles.find('name', config.mod_role);
   if (mod_role && message.member.roles.has(mod_role.id)) permlvl = 2;
   let admin_role = message.guild.roles.find('name', config.admin_role);
   if (admin_role && message.member.roles.has(admin_role.id)) permlvl = 3;
   if (message.author.id === config.ownerid) permlvl = 4;
   return permlvl;
 };
-}

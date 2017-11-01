@@ -1,3 +1,5 @@
+const config = require('../config.json');
+
 exports.run = (client, message, args) => {
   let reason = args.slice(1).join(' ');
   client.unbanReason = reason;

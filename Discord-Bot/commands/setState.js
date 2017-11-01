@@ -2,9 +2,9 @@ var config = require('../config.json');
 
 exports.run = function(client, message, args) {
   try {
-    if(!!argresult && argresult.lenght !== 0) {
-        console.log(`User: ${message.author.username} set state to: ${argresult}`);
-      client.user.setStatus(argresult).catch(e => console.log(`Error during setting State: ${e}`));
+    if(!!args && args.lenght !== 0) {
+        console.log(`User: ${message.author.username} set state to: ${args}`);
+      client.user.setStatus(args.join(' ')).catch(e => console.log(`Error during setting State: ${e}`));
     } else {
       console.log(`User: ${message.author.username} set state to: online`);
     client.user.setStatus('online');

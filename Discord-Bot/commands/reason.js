@@ -1,4 +1,4 @@
-const config = reqire('../config.json');
+const config = require('../config.json');
 
 async function embedSan(embed) {
   embed.message ? delete embed.message : null;
@@ -12,7 +12,8 @@ async function embedSan(embed) {
 }
 
 exports.run = async (client, message, args) => {
-  const modlog = client.channels.find('name', 'mod-log');
+try {
+  const modlog = client.channels.get(config.audit);
   const caseNumber = args.shift();
   const newReason = args.join(' ');
 
@@ -31,6 +32,9 @@ exports.run = async (client, message, args) => {
       logMsg.edit({embed});
     });
   });
+} catch (e) {
+console.log(`Error during reason: ${e}`);
+}
 };
 
 exports.conf = {
